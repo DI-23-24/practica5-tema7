@@ -1,0 +1,53 @@
+* Desarrollo de Interfaces - Diseño de UI con Qt Quick y QML
+  En esta práctica estudiaremos distintas técnicas para crear layouts y realizaremos el primer boceto de un interfaz con la librería Qt Quick y el lenguaje QML.
+
+** Instalación de requisitos
+   Instala Qt Creator ultima versión (tema 6), una vez instalado el software, ejecuta ~QtCreator~ y *activa el plugin* 
+   ~Qt Quick / QmlDesigner~ dentro del menú ~Help / About Plugins...~.
+   
+** Aplicación
+   El repositorio incluye el esqueleto de la aplicación. Está basado en un proyecto Qt Quick de tipo ~Qt Quick Application - Swipe~.
+
+   Puedes abrir el proyecto desde QtCreator seleccionando el archivo ~qtlayouts.pro~.
+
+   El repositorio lleva incluido un archivo ~.gitignore~ para proyectos de Qt: de esta manera solo se subirá el código al repositorio (no se subirán los ejecutables, archivos temporales o resultados de compilación).
+
+*** Modificación del proyecto'qtlayouts' para utilizar ~charts~ (proyecto ejemplo)
+    Para poder utilizar los componentes de gráficas de la librería Qt hay que hacer unos cambios en los archivos generados por el asistente de creación de proyectos. Dichos cambios *ya están hechos* en el esqueleto de la aplicación del repositorio. Se indican aquí para explicar en qué consisten:
+    
+    1. Modificación del fichero de proyecto ~.pro~ para *añadir* la siguiente línea detrás del código ~QT += quick~:
+       #+begin_src
+       QT += widgets
+       #+end_src
+    2. Modificación del fichero ~Sources/main.cpp~:  (en algunos casos este paso ya está implementado por defecto, revisadlo)
+       1. *Sustitución* de la línea ~#include <QGuiApplication>~ por ~#include <QApplication>~
+       2. *Sustitución* de la línea ~QGuiApplication app(argc, argv);~ por ~QApplication app(argc, argv);~
+
+*** Creación del interfaz
+    El aspecto visual del interfaz a crear es el siguiente:
+    
+    [[./imagenes/aplicacion.png]]
+
+    Debes crear *3 versiones* de dicho interfaz en *3 ventanas distintas* de la aplicación (cada una de ellas está disponible en un fichero distinto). En cada versión deberás utilizar una [[https://doc.qt.io/qt-6/qtquick-usecase-layouts.html][técnica de layout distinta]]:
+
+    1. [[https://doc.qt.io/qt-6/qtquick-positioning-layouts.html][Posicionadores]] - Fichero ~Page1Form.ui.qml~
+    2. [[https://doc.qt.io/qt-6/qtquick-positioning-anchors.html][Anclas]] - Fichero ~Page2Form.ui.qml~
+    3. [[https://doc.qt.io/qt-6/qtquicklayouts-overview.html][Layouts]] - Fichero ~Page3Form.ui.qml~
+ 
+    El aspecto visual debe quedar lo más parecido posible a la captura indicada.
+
+    Deberás mostrar tu *nombre y apellidos* debajo del texto *GESTIÓN DE PRESUPUESTO*.
+    
+*** Aspectos a contemplar
+    Debes contemplar las *siguientes circunstancias* y tratar de responder a ellas en el diseño de cada versión utilizando las características que te proporciona cada técnica de layout. *Es posible que no puedas dar respuesta a todas ellas* con algunas de dichas técnicas. Si es el caso, *justifícalo mediante comentarios en el código de la aplicación*.
+    - La aplicación tiene que responder al *redimensionado* de la ventana que la contiene. Ten en cuenta que es una aplicación multiplataforma que puede utilizarse en dispositivos de distinto tamaño.
+    - La gráfica debería verse con un *tamaño mínimo* y un *tamaño máximo*: en pantallas muy *pequeñas* debería tener un tamaño mínimo y mostrar algún tipo de *scroll* y en pantallas muy grandes no debería aparecer en tamaño gigante.
+    - El *botón de añadir* debería aparecer siempre en la *esquina inferior derecha* de la pantalla.
+    - El botón de *Ver lista de gastos* debería aparecer *cerca de la parte inferior de la ventana* incluso cuando la gráfica haya llegado a su tamaño máximo de visualización.
+    - La *gráfica* debería aparecer *centrada en la pantalla* incluso cuando haya llegado a su tamaño máximo de visualización.
+    
+** Formato de la entrega
+ - Cada alumno dispondrá de un repositorio en GitHub para su trabajo personal. Dicho repositorio se creará automáticamente al hacer clic en el enlace y aceptar la tarea (/assignment/).
+ - Todos los archivos de la práctica se guardarán en el repositorio y se subirán a GitHub.
+ - Se deberá entregar el *código* del proyecto que se pide.
+ 
